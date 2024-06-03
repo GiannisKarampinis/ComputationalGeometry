@@ -56,6 +56,10 @@ namespace jmk {
         template <class T, size_t D>
         friend float dotProduct(const Vector<T, D>&v1, 
         const Vector<T, D>& v2);
+
+        float magnitude() const;
+
+        void normalize();
     };
 
     typedef Vector<float, DIM2> Vector2f;
@@ -149,6 +153,28 @@ namespace jmk {
 
             return product;
         }
+    
+    template<class coordinate_type, size_t dimension> 
+    inline float Vector<coordinate_type, dimension>::magnitude() const
+    {
+        float value = 0.0f;
+
+        for (size_t i = 0; i < dimension; i++) {
+            value += pow(coords[i], 2.0);
+        }
+
+        return sqrt(value);
+    } 
+
+    template<class coordinate_type, size_t dimension> 
+    inline void Vector<coordinate_type, dimension>::normalize()
+    {
+        auto mag = magnitude();
+
+        for (size_t i = 0; i < dimension; i++) {
+            assign(i, coords[i] / mag);
+        }
+    }
 
     float crossProduct2D(Vector2f v1, Vector2f v2);
 
