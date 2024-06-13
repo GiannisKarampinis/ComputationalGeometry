@@ -1,7 +1,7 @@
 #include "Vector.h"
 
 float jmk::crossProduct2D(Vector2f v1, Vector2f v2)
-{
+{ /* It's a scalar and corresponds to the z value of the 3D Cross Product vector */
     return v1[X] * v2[Y] - v1[Y] * v2[X];
 }
 
